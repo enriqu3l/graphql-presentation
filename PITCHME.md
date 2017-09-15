@@ -1,17 +1,96 @@
-## The Kitchen Sink
-##### <span style="font-family:Helvetica Neue; font-weight:bold">A <span style="color:#e49436">Git</span>Pitch Feature Tour</span>
+## GraphQL introduction
+##### <span style="font-family:Helvetica Neue; font-weight:bold">And how it was used to build the new Data Engine UI</span>
 
 ---
 
-## Slideshow Theme Switcher
+## What is GraphQL ?
+
+- A data query language for data fetching and manipulations |
+- Client and server agrees on a schema |
+- Client queries are shaped just like the data it returns |
+- Language agnostic |
+- GraphQL has a formal specification |
+
+---
+
+## A simple query example
+
+```js
+query {
+  connection {
+    status
+    config {
+      keyspace
+      contacts 
+    } 
+  }
+}
+```
+
+@[2](connection is a query)
+@[3](status is a simple field)
+@[4-6](config is an object field)
+@[6](contacts is an array)
+
+---
+
+## GraphQL Schema
+
+- Schema = data structures + mutations  |
+- Is the API the client needs from the server |
+- Easily mocked by the client |
+- Discoverable at runtime |  
+
+---
+
+## Query
 <span style="font-size:0.6em; color:gray">Available bottom-left of screen.</span> |
 <span style="font-size:0.6em; color:gray">Start switching themes right now!</span>
 
 ---
 
-## Tip!
+## Mutation
 For the *best viewing experience*   
 press **F** key to go fullscreen.
+
+---
+
+## Advantages over REST
+For the *best viewing experience*   
+press **F** key to go fullscreen.
+
+- allow to retrieve multiple data structures with one "composite" query
+- the client can select what to retrieve
+- tooling
+
+---
+
+## Design considerations
+
+- Use coarse grained data structures as the client can select a subpart of them
+- Use rich data struxcure to describe mutation result (not a simple error code !)
+
+---
+
+## Pain points
+
+- Java implementation constraints 
+- Mutations 
+
+---
+
+## Demo
+For the *best viewing experience*   
+press **F** key to go fullscreen.
+
+---
+
+
+## Conclusion
+
+Good way for client and server teams to agree on the API 
+Easy to explore the schema and run queries with the existing tooling
+Overall a good choice, better suited than REST API for our use case
 
 ---
 
@@ -102,30 +181,6 @@ else:
 
 ---
 
-## Code Presenting
-## GitHub GIST
-<span style="font-size:0.6em; color:gray">Press Down key for examples.</span> |
-<span style="font-size:0.6em; color:gray">See [GitPitch Wiki](https://github.com/gitpitch/gitpitch/wiki/Code-Presenting) for details.</span>
-
-![Press Down Key](assets/down-arrow.png)
-
-+++
-
-#### Present Source Directly From GitHub GIST
-
-<br>
-
-Step through GIST source code within    
-*online and offline* presentations.
-
-+++?gist=onetapbeyond/494e0fecaf0d6a2aa2acadfb8eb9d6e8&lang=Scala&title=GIST: Scala Snippets
-
-@[23](Initialize Apache Spark cluster execution context)
-@[47-53](Transform RDD into set of AWS Lambda tasks)
-@[62](Delegate execution off Spark cluster to AWS Lambda)
-@[72-75](Handle AWS Lambda task execution results)
-
----
 
 ## Image Slides
 ## [ Inline ]
@@ -193,195 +248,6 @@ for *maximum impact*.
 
 +++?image=https://d1z75bzl1vljy2.cloudfront.net/kitchen-sink/127.jpg
 
-
----
-
-## Video Slides
-## [ Inline ]
-<span style="font-size:0.6em; color:gray">Press Down key for examples.</span> |
-<span style="font-size:0.6em; color:gray">See [GitPitch Wiki](https://github.com/gitpitch/gitpitch/wiki/Video-Slides) for details.</span>
-
-![Press Down Key](assets/down-arrow.png)
-
-+++
-
-#### Bring Your Presentations Alive
-
-<br>
-
-Embed *YouTube*, *Vimeo*, *MP4* and *WebM*   
-inline on any slide.
-
-+++
-
-![YouTube Video](https://www.youtube.com/embed/dNJdJIwCF_Y)
-
-+++
-
-![Vimeo Video](https://player.vimeo.com/video/125471012)
-
-+++
-
-![MP4 Video](http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4)
-
-
----
-
-## Video Slides
-## [ Background ]
-<span style="font-size:0.6em; color:gray">Press Down key for examples.</span> |
-<span style="font-size:0.6em; color:gray">See [GitPitch Wiki](https://github.com/gitpitch/gitpitch/wiki/Video-Slides#background) for details.</span>
-
-![Press Down Key](assets/down-arrow.png)
-
-+++
-
-#### Maximize The Viewer Experience
-
-<br>
-
-Go fullscreen with *MP4* and *WebM* videos.
-
-+++?video=http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4
-
----
-
-## Math Notation Slides
-<span style="font-size:0.6em; color:gray">Press Down key for examples.</span> |
-<span style="font-size:0.6em; color:gray">See [GitPitch Wiki](https://github.com/gitpitch/gitpitch/wiki/Math-Notation-Slides) for details.</span>
-
-![Press Down Key](assets/down-arrow.png)
-
-+++
-
-#### Beautiful Math Rendered Beautifully
-
-<br>
-
-Use *TeX*, *LaTeX* and *MathML* markup   
-powered by [MathJax](https://www.mathjax.org).
-
-+++
-
-`$$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$`
-
-+++
-
-`\begin{align}
-\dot{x} & = \sigma(y-x) \\
-\dot{y} & = \rho x - y - xz \\
-\dot{z} & = -\beta z + xy
-\end{align}`
-
-+++
-
-##### The Cauchy-Schwarz Inequality
-
-`\[
-\left( \sum_{k=1}^n a_k b_k \right)^{\!\!2} \leq
- \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
-\]`
-
-+++
-
-##### The probability of getting \(k\) heads when flipping \(n\) coins is:
-
-`\[P(E) = {n \choose k} p^k (1-p)^{ n-k} \]`
-
-+++
-
-##### In-line Mathematics
-
-This expression `\(\sqrt{3x-1}+(1+x)^2\)` is an example of an inline equation.
-
----
-
-## Chart Slides
-<span style="font-size:0.6em; color:gray">Press Down key for examples.</span> |
-<span style="font-size:0.6em; color:gray">See [GitPitch Wiki](https://github.com/gitpitch/gitpitch/wiki/Chart-Slides) for details.</span>
-
-![Press Down Key](assets/down-arrow.png)
-
-+++
-
-#### Chart Data Rendered Beautifully
-
-<br>
-
-Use *Bar*, *Line*, *Area*, and *Scatter* charts among many other chart types directly within your markdown, all powered by [Chart.js](http://www.chartjs.org).
-
-+++
-
-<canvas data-chart="line">
-<!--
-{
- "data": {
-  "labels": ["January"," February"," March"," April"," May"," June"," July"],
-  "datasets": [
-   {
-    "data":[65,59,80,81,56,55,40],
-    "label":"My first dataset","backgroundColor":"rgba(20,220,220,.8)"
-   },
-   {
-    "data":[28,48,40,19,86,27,90],
-    "label":"My second dataset","backgroundColor":"rgba(220,120,120,.8)"
-   }
-  ]
- },
- "options": { "responsive": "true" }
-}
--->
-</canvas>
-
-+++
-
-<canvas class="stretch" data-chart="horizontalBar">
-<!--
-{
- "data" : {
-  "labels" : ["Grapefruit", "Orange", "Kiwi",
-    "Blackberry", "Banana",
-    "Blueberry"],
-  "datasets" : [{
-    "data": [48, 26, 59, 39, 21, 74],
-    "backgroundColor": "#e49436",
-    "borderColor": "#e49436"
-  }]
-  },
-  "options": {
-    "title": {
-      "display": true,
-      "text": "The most delicious fruit?",
-      "fontColor": "gray",
-      "fontSize": 20
-    },
-    "legend": {
-      "display": false
-    },
-    "scales": {
-      "xAxes": [{
-        "ticks": {
-            "beginAtZero": true,
-            "max": 80,
-            "stepSize": 10,
-            "fontColor": "gray"
-        },
-        "scaleLabel": {
-          "display": true,
-          "labelString": "Respondents",
-          "fontColor": "gray"
-        }
-      }],
-      "yAxes": [{
-        "ticks": {
-            "fontColor": "gray"
-        }
-      }]
-    }
-  }
-}
--->
-</canvas>
 
 ---
 
@@ -500,7 +366,3 @@ Enable auto-slide with custom slide intervals, presentation looping, and RTL flo
 - [Print](https://github.com/gitpitch/gitpitch/wiki/Slideshow-Printing) any slideshow as a PDF document
 - [Download and present](https://github.com/gitpitch/gitpitch/wiki/Slideshow-Offline) any slideshow offline
 
----
-
-## GO FOR IT.
-## JUST ADD <span style="color:#e49436; text-transform: none">PITCHME.md</span> ;)
